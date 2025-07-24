@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SEANet Audio Samples</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #333;
+      font-size: 17px;
+    }
+    .container {
+      padding: 40px;
+      max-width: 1800px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 18px;
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 24px;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #eee;
+      font-weight: bold;
+    }
+    .waveform, .spectrogram {
+      width: 100%;
+      max-width: 1000px;
+      max-height: 400px;
+      height: auto;
+      object-fit: contain;
+      image-rendering: auto;
+    }
+    .audio-sample-info {
+      text-align: left;
+      line-height: 1.6em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Audio samples from "SEANet: A Multi-modal Speech Enhancement Network"</h1>
+    <p><strong>Paper:</strong> <a href="https://arxiv.org/" target="_blank">arXiv</a></p>
+    <p><strong>Authors:</strong> Marco Tagliasacchi, Yunpeng Li, Karolis Misiunas, Dominik Roblek</p>
+    <p><strong>Abstract:</strong> We explore the possibility of leveraging accelerometer data to perform speech enhancement in very noisy conditions. Although it is possible to only partially reconstruct user's speech from the accelerometer, the latter provides a strong conditioning signal that is not influenced from noise sources in the environment. Based on this observation, we feed a multi-modal input to SEANet (Sound EnhAncement Network), a wave-to-wave fully convolutional model, which adopts a combination of feature losses and adversarial losses to reconstruct an enhanced version of user's speech. We trained our model with data collected by sensors mounted on an earbud and synthetically corrupted by adding different kinds of noise sources to the audio signal. Our experimental results demonstrate that it is possible to achieve very high quality results, even in the case of interfering speech at the same level of loudness. A sample of the output produced by our model is available at <a href="https://github.com/google-research/seanet" target="_blank">https://github.com/google-research/seanet</a>.</p>
+
+    <p><strong>About:</strong> The audio examples in this page have been randomly selected from the evaluation datasets. Each example contains three rows: (1) clean sample; (2) mixed sample, where the audio channel has been mixed with another speech sample or a noise sample; and (3) our result for denoising the audio channel. The five columns contain: (a) key information; (b) embedded audio sample; (c) audio waveform, where blue is the clean audio and orange is mixed or denoised sample; (d) mel log spectrogram for audio; (e) mel log spectrogram for accelerometer signal. Note that accelerometer signal is the same for clean and mixed samples.</p>
+
+    <h2>Mixed speech examples</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>(a)</th>
+          <th>(b) Embedded audio sample</th>
+          <th>(c) Audio waveform</th>
+          <th>(d) Mel log spectrogram for audio</th>
+          <th>(e) Mel log spectrogram for accelerometer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Clean sample -->
+        <tr>
+          <td class="audio-sample-info">
+            <strong>Clean sample</strong><br>
+            0:00 / 0:04
+          </td>
+          <td>
+            <audio controls>
+              <source src="assets/raw_audio_1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </td>
+          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" alt="Mel spectrogram (acc)" class="spectrogram"></td>
+        </tr>
+        <!-- Noisy sample -->
+        <tr>
+          <td class="audio-sample-info">
+            <strong>Noisy sample</strong><br>
+            SNR=<br>SI-SDR=
+          </td>
+          <td>
+            <audio controls>
+              <source src="assets/noise_audio_1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </td>
+          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" alt="Mel spectrogram (acc)" class="spectrogram"></td>
+        </tr>
+        <!-- Denoised sample -->
+        <tr>
+          <td class="audio-sample-info">
+            <strong>Denoised sample</strong><br>
+            SNR=<br>SI-SDR=<br>ΔSI-SDR=
+          </td>
+          <td>
+            <audio controls>
+              <source src="assets/rec_audio_1.mp3" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </td>
+          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
