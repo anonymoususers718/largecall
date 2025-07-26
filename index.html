@@ -14,20 +14,20 @@
       font-size: 17px;
     }
     .container {
-      padding: 40px;
-      max-width: 1800px;
+      padding: 20px;
+      max-width: 1300px;
       margin: auto;
       box-sizing: border-box;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 18px;
+      font-size: 15px;
       text-align: center;
     }
     th, td {
       border: 1px solid #ccc;
-      padding: 24px;
+      padding: 20px;
       vertical-align: middle;
     }
     th {
@@ -36,15 +36,19 @@
     }
     .waveform, .spectrogram {
       width: 100%;
-      max-width: 1000px;
-      max-height: 400px;
+      max-width: 800px;
+      max-height: 300px;
       height: auto;
       object-fit: contain;
-      image-rendering: auto;
     }
     .audio-sample-info {
       text-align: left;
       line-height: 1.6em;
+    }
+    .separator td {
+      border: none;
+      height: 5px;
+    padding: 0;
     }
   </style>
 </head>
@@ -55,7 +59,7 @@
     <p><strong>Authors:</strong> Marco Tagliasacchi, Yunpeng Li, Karolis Misiunas, Dominik Roblek</p>
     <p><strong>Abstract:</strong> We explore the possibility of leveraging accelerometer data to perform speech enhancement in very noisy conditions. Although it is possible to only partially reconstruct user's speech from the accelerometer, the latter provides a strong conditioning signal that is not influenced from noise sources in the environment. Based on this observation, we feed a multi-modal input to SEANet (Sound EnhAncement Network), a wave-to-wave fully convolutional model, which adopts a combination of feature losses and adversarial losses to reconstruct an enhanced version of user's speech. We trained our model with data collected by sensors mounted on an earbud and synthetically corrupted by adding different kinds of noise sources to the audio signal. Our experimental results demonstrate that it is possible to achieve very high quality results, even in the case of interfering speech at the same level of loudness. A sample of the output produced by our model is available at <a href="https://github.com/google-research/seanet" target="_blank">https://github.com/google-research/seanet</a>.</p>
 
-    <p><strong>About:</strong> The audio examples in this page have been randomly selected from the evaluation datasets. Each example contains three rows: (1) clean sample; (2) mixed sample, where the audio channel has been mixed with another speech sample or a noise sample; and (3) our result for denoising the audio channel. The five columns contain: (a) key information; (b) embedded audio sample; (c) audio waveform, where blue is the clean audio and orange is mixed or denoised sample; (d) mel log spectrogram for audio; (e) mel log spectrogram for accelerometer signal. Note that accelerometer signal is the same for clean and mixed samples.</p>
+    <p><strong>About:</strong> The audio examples in this page have been randomly selected from the evaluation datasets. Each example contains three rows: (1) clean sample; (2) mixed sample; (3) denoised sample. The five columns contain: (a) key info; (b) audio; (c) waveform; (d) mel spectrogram for audio; (e) mel spectrogram for accelerometer.</p>
 
     <h2>Mixed speech examples</h2>
     <table>
@@ -69,53 +73,217 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Clean sample -->
+        <!-- Example 1 -->
         <tr>
-          <td class="audio-sample-info">
-            <strong>Clean sample</strong><br>
-            0:00 / 0:04
-          </td>
-          <td>
-            <audio controls>
-              <source src="assets/raw_audio_1.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </td>
-          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
-          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
-          <td><img src="assets/mel_acc.png" alt="Mel spectrogram (acc)" class="spectrogram"></td>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_1.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
         </tr>
-        <!-- Noisy sample -->
         <tr>
-          <td class="audio-sample-info">
-            <strong>Noisy sample</strong><br>
-            SNR=<br>SI-SDR=
-          </td>
-          <td>
-            <audio controls>
-              <source src="assets/noise_audio_1.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </td>
-          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
-          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
-          <td><img src="assets/mel_acc.png" alt="Mel spectrogram (acc)" class="spectrogram"></td>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_1.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
         </tr>
-        <!-- Denoised sample -->
         <tr>
-          <td class="audio-sample-info">
-            <strong>Denoised sample</strong><br>
-            SNR=<br>SI-SDR=<br>ΔSI-SDR=
-          </td>
-          <td>
-            <audio controls>
-              <source src="assets/rec_audio_1.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-          </td>
-          <td><img src="assets/waveform.png" alt="Waveform" class="waveform"></td>
-          <td><img src="assets/mel_audio.png" alt="Mel spectrogram (audio)" class="spectrogram"></td>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_1.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+         <td><img src="assets/mel_audio.png" class="spectrogram"></td>
         </tr>
+
+        <tr class="separator"><td colspan=""></td></tr>
+
+        <!-- Example 2 -->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_2.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_2.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_2.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+        <tr class="separator"><td colspan="5"></td></tr>
+
+        <!-- Example 3 -->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_3.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_3.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_3.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+        <tr class="separator"><td colspan="5"></td></tr>
+
+<!-- Example 4-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_4.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_4.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_4.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+<tr class="separator"><td colspan="5"></td></tr>
+
+<!-- Example 5-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_5.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_5.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_5.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+       <tr class="separator"><td colspan="5"></td></tr>
+
+<!-- Example 6-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_6.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_6.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_6.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+       <tr class="separator"><td colspan="5"></td></tr>
+
+<!-- Example 7-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_7.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_7.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_7.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+       <tr class="separator"><td colspan="5"></td></tr>
+
+<!-- Example 8-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_8.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_8.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_8.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+<!-- Example 9-->
+        <tr>
+          <td class="audio-sample-info"><strong>Clean sample</strong><br>0:00 / 0:04</td>
+          <td><audio controls><source src="assets/raw_audio_9.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Noisy sample</strong><br>SNR=<br>SI-SDR=</td>
+          <td><audio controls><source src="assets/noise_audio_9.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+          <td><img src="assets/mel_acc.png" class="spectrogram"></td>
+        </tr>
+        <tr>
+          <td class="audio-sample-info"><strong>Denoised sample</strong><br>SNR=<br>SI-SDR=<br>ΔSI-SDR=</td>
+          <td><audio controls><source src="assets/rec_audio_9.mp3" type="audio/mpeg"></audio></td>
+          <td><img src="assets/waveform.png" class="waveform"></td>
+          <td><img src="assets/mel_audio.png" class="spectrogram"></td>
+        </tr>
+
+       <tr class="separator"><td colspan="5"></td></tr>
       </tbody>
     </table>
   </div>
